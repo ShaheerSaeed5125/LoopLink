@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Team Dashboard – LoopLink 360</title>
+<title>Manager Portal – LoopLink 360</title>
 
 <style>
 :root {
@@ -271,55 +271,46 @@ function toggleTheme(){
       <a class="nav-item" href="index.html"><span class="icon">🏠</span>Home</a>
       <a class="nav-item" href="feedback.html"><span class="icon">💬</span>Submit Feedback</a>
       <a class="nav-item" href="workflow.html"><span class="icon">⚙️</span>Workflows</a>
-      <a class="nav-item active" href="dashboard.html"><span class="icon">📊</span>Team Dashboard</a>
-      <a class="nav-item" href="manager.html"><span class="icon">🧑‍💼</span>Manager Portal</a>
+      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span>Team Dashboard</a>
+      <a class="nav-item active" href="manager.html"><span class="icon">🧑‍💼</span>Manager Portal</a>
       <a class="nav-item" href="analytics.html"><span class="icon">📈</span>Analytics</a>
     </div>
   </div>
   <div class="main">
     <div class="topbar">
-      <div class="chip">Team view • What is happening now</div>
+      <div class="chip">Manager view • Coaching and follow up</div>
       <div class="toggle" onclick="toggleTheme()">
         <div class="toggle-switch"><div class="toggle-knob"></div></div>
         <span>Toggle light / dark</span>
       </div>
     </div>
     <div class="card">
-      <h2>Team transparency dashboard</h2>
-      <p class="sub">This view shows everyone what has been raised, what is in progress, and what has been resolved, so feedback does not disappear.</p>
-      <div class="metric-grid">
-        <div class="metric">
-          <div class="metric-label">Open issues</div>
-          <div class="metric-value">12</div>
-          <div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Resolved this week</div>
-          <div class="metric-value">8</div>
-          <div class="bar-track"><div class="bar-fill" style="width:55%;"></div></div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Average response time</div>
-          <div class="metric-value">1.4d</div>
-          <div class="bar-track"><div class="bar-fill" style="width:60%;"></div></div>
-        </div>
-      </div>
-      <div style="margin-top:16px; display:grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap:14px;">
-        <div style="background:var(--card-alt); border-radius:14px; padding:12px 12px 10px;">
-          <div class="metric-label">Recently raised</div>
+      <h2>Manager portal</h2>
+      <p class="sub">Managers see all active workflows, can adjust tone, and send structured feedback back to employees with one click.</p>
+      <div class="columns">
+        <div>
+          <div class="metric-label">Active workflows</div>
           <ul style="font-size:13px; color:var(--muted); padding-left:18px; margin-top:6px;">
-            <li>Unclear sprint priorities for next quarter.</li>
-            <li>Overlapping meetings on Monday mornings.</li>
-            <li>Delayed performance review feedback.</li>
+            <li>Clarify sprint goals with frontend team • Due Fri</li>
+            <li>Reduce meeting load for support engineers • In progress</li>
+            <li>Set expectations for code review response times • Not started</li>
           </ul>
+          <div style="margin-top:10px;" class="metric-label">Draft feedback</div>
+          <textarea placeholder="Example: I appreciate your honesty about the workload. Here is what we will change and how we will track it…"></textarea>
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <button class="button">Send to employee</button>
+            <button class="button secondary">Polish tone with AI</button>
+          </div>
         </div>
-        <div style="background:var(--card-alt); border-radius:14px; padding:12px 12px 10px;">
-          <div class="metric-label">Recently resolved</div>
+        <div>
+          <div class="metric-label">Suggested coaching focus</div>
           <ul style="font-size:13px; color:var(--muted); padding-left:18px; margin-top:6px;">
-            <li>New asynchronous standup channel created.</li>
-            <li>One stop page for deadlines launched.</li>
-            <li>Quarterly listening session with leadership.</li>
+            <li>Clarify ownership for cross team work.</li>
+            <li>Protect focus time two afternoons per week.</li>
+            <li>Share decisions and context asynchronously.</li>
           </ul>
+          <div style="margin-top:16px;" class="metric-label">Next listening session</div>
+          <p class="sub">Thu • 3:00 pm • “How are our workflows helping or hurting?”</p>
         </div>
       </div>
     </div>

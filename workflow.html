@@ -1,31 +1,355 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Workflow</title>
+<title>Workflow – LoopLink 360</title>
+
 <style>
-body { font-family: Arial; margin:40px; background:#f5f7fb; }
-.container { max-width:800px; margin:auto; background:white; padding:25px; border-radius:12px;
-            box-shadow:0 0 12px rgba(0,0,0,0.12); }
-li { margin:10px 0; }
+:root {
+  --bg: #0b1520;
+  --bg-alt: #111827;
+  --card: #111827;
+  --card-alt: #020617;
+  --accent: #22c55e;
+  --accent-soft: rgba(34,197,94,0.16);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2933;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+body.light {
+  --bg: #f3f4f6;
+  --bg-alt: #e5e7eb;
+  --card: #ffffff;
+  --card-alt: #f9fafb;
+  --accent: #2563eb;
+  --accent-soft: rgba(37,99,235,0.12);
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #d1d5db;
+}
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #020617, #020617 60%, #0b1120);
+  border-right: 1px solid #111827;
+  padding: 20px 16px;
+  box-sizing: border-box;
+}
+.sidebar h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+}
+.sidebar small {
+  color: var(--muted);
+}
+.nav-group {
+  margin-top: 24px;
+}
+.nav-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.nav-item span.icon {
+  width: 18px;
+  text-align: center;
+}
+.nav-item.active, .nav-item:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.main {
+  flex: 1;
+  background: radial-gradient(circle at top left, rgba(34,197,94,0.15), transparent 55%), var(--bg);
+  padding: 22px 28px;
+  box-sizing: border-box;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.chip {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--muted);
+}
+.chip b { color: var(--accent); }
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.toggle-switch {
+  width: 34px;
+  height: 18px;
+  background: #020617;
+  border-radius: 999px;
+  padding: 2px;
+  box-sizing: border-box;
+  border: 1px solid #1f2937;
+  display: flex;
+  align-items: center;
+}
+.toggle-knob {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: translateX(0);
+  transition: transform 0.18s ease;
+}
+body.light .toggle-knob {
+  transform: translateX(14px);
+}
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 18px 18px 16px;
+  box-shadow: 0 18px 45px rgba(15,23,42,0.65);
+}
+.card h1, .card h2, .card h3 {
+  margin-top: 0;
+}
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--accent);
+  color: #020617;
+}
+.button.secondary {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+textarea, input, select {
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--card-alt);
+  color: var(--text);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 10px 11px;
+  width: 100%;
+  box-sizing: border-box;
+}
+textarea:focus, input:focus, select:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.tag {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.metric {
+  padding: 10px 10px 9px;
+  border-radius: 12px;
+  background: var(--card-alt);
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.metric-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+.bar-track {
+  margin-top: 4px;
+  height: 5px;
+  border-radius: 999px;
+  background: #020617;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+a {
+  color: inherit;
+}
+@media (max-width: 900px) {
+  .app-shell { flex-direction: column; }
+  .sidebar { width: 100%; display:flex; align-items:center; justify-content:space-between; }
+  .nav-group { display:none; }
+  .main { padding:18px 14px 24px; }
+  .columns { grid-template-columns: minmax(0,1fr); }
+}
+</style>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle('light');
+}
+</script>
+
+<style>
+.steps {
+  list-style:none;
+  padding-left:0;
+  margin:12px 0 0;
+}
+.steps li {
+  opacity:0;
+  transform: translateY(6px);
+  animation: fadeInUp 0.35s ease forwards;
+}
+.steps li:nth-child(2) { animation-delay:0.18s; }
+.steps li:nth-child(3) { animation-delay:0.34s; }
+.steps li:nth-child(4) { animation-delay:0.5s; }
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.pulse {
+  width:16px;
+  height:16px;
+  border-radius:999px;
+  border:2px solid var(--accent);
+  border-top-color:transparent;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 </style>
 <script>
-window.onload = function(){
-    var fb = localStorage.getItem("lastFeedback") || "No feedback found";
-    document.getElementById("fbtext").innerText = fb;
+function hydrate(){
+  var fb = localStorage.getItem("lastFeedback") || "Deadlines are unclear and meetings happen last minute.";
+  var role = localStorage.getItem("lastRole") || "Employee";
+  document.getElementById("fbtext").innerText = fb;
+  document.getElementById("role").innerText = role;
+
+  document.getElementById("loading").style.display = "flex";
+  document.getElementById("result").style.display = "none";
+  setTimeout(function(){
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("result").style.display = "block";
+  }, 900);
 }
 </script>
 </head>
-<body>
-<div class="container">
-<h1>AI Generated Workflow</h1>
-<p><b>Feedback:</b> <span id="fbtext"></span></p>
-<ul>
-<li>Create weekly summary addressing this issue</li>
-<li>Schedule follow up meeting with team</li>
-<li>Assign action items to responsible roles</li>
-<li>Set automated Slack or email reminders</li>
-</ul>
+<body onload="hydrate()">
+<div class="app-shell">
+  <div class="sidebar">
+    <div>
+      <h2>LoopLink 360</h2>
+      <small>Smarter feedback, smarter workflows</small>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Navigate</div>
+      <a class="nav-item" href="index.html"><span class="icon">🏠</span>Home</a>
+      <a class="nav-item" href="feedback.html"><span class="icon">💬</span>Submit Feedback</a>
+      <a class="nav-item active" href="workflow.html"><span class="icon">⚙️</span>Workflows</a>
+      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span>Team Dashboard</a>
+      <a class="nav-item" href="manager.html"><span class="icon">🧑‍💼</span>Manager Portal</a>
+      <a class="nav-item" href="analytics.html"><span class="icon">📈</span>Analytics</a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <div class="chip">Step 2 • AI designed workflow</div>
+      <div class="toggle" onclick="toggleTheme()">
+        <div class="toggle-switch"><div class="toggle-knob"></div></div>
+        <span>Toggle light / dark</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Generated workflow from feedback</h2>
+      <p class="sub"><b>Role:</b> <span id="role"></span> • <b>Feedback:</b> <span id="fbtext"></span></p>
+      <div id="loading" style="display:none; align-items:center; gap:10px; margin-top:10px;">
+        <div class="pulse"></div>
+        <span class="sub">Designing workflow steps in real time…</span>
+      </div>
+      <div id="result" style="display:none; margin-top:10px;">
+        <ol class="steps">
+          <li>Create a weekly deadline summary shared with the whole team.</li>
+          <li>Introduce a 24 hour minimum notice rule for new meetings.</li>
+          <li>Assign a single owner to confirm deadlines after every meeting.</li>
+          <li>Set automated Slack or email reminders 48 hours before each key deadline.</li>
+        </ol>
+        <div style="margin-top:14px; display:flex; gap:8px;">
+          <a href="dashboard.html" class="button">Send to team dashboard</a>
+          <a href="feedback.html" class="button secondary">Try another scenario</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

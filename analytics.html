@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Team Dashboard – LoopLink 360</title>
+<title>Analytics – LoopLink 360</title>
 
 <style>
 :root {
@@ -258,6 +258,45 @@ function toggleTheme(){
 }
 </script>
 
+<style>
+.analytics-grid {
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+.graph {
+  background:var(--card-alt);
+  border-radius:14px;
+  padding:12px 12px 10px;
+}
+.graph-bars {
+  margin-top:10px;
+}
+.graph-bar-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+.graph-bar-track {
+  flex:1;
+  height:6px;
+  border-radius:999px;
+  background:#020617;
+  overflow:hidden;
+}
+.graph-bar-fill {
+  height:100%;
+  border-radius:999px;
+  background:var(--accent);
+}
+@media (max-width:900px){
+  .analytics-grid { grid-template-columns:minmax(0,1fr); }
+}
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -271,54 +310,73 @@ function toggleTheme(){
       <a class="nav-item" href="index.html"><span class="icon">🏠</span>Home</a>
       <a class="nav-item" href="feedback.html"><span class="icon">💬</span>Submit Feedback</a>
       <a class="nav-item" href="workflow.html"><span class="icon">⚙️</span>Workflows</a>
-      <a class="nav-item active" href="dashboard.html"><span class="icon">📊</span>Team Dashboard</a>
+      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span>Team Dashboard</a>
       <a class="nav-item" href="manager.html"><span class="icon">🧑‍💼</span>Manager Portal</a>
-      <a class="nav-item" href="analytics.html"><span class="icon">📈</span>Analytics</a>
+      <a class="nav-item active" href="analytics.html"><span class="icon">📈</span>Analytics</a>
     </div>
   </div>
   <div class="main">
     <div class="topbar">
-      <div class="chip">Team view • What is happening now</div>
+      <div class="chip">Analytics • Impact over time</div>
       <div class="toggle" onclick="toggleTheme()">
         <div class="toggle-switch"><div class="toggle-knob"></div></div>
         <span>Toggle light / dark</span>
       </div>
     </div>
     <div class="card">
-      <h2>Team transparency dashboard</h2>
-      <p class="sub">This view shows everyone what has been raised, what is in progress, and what has been resolved, so feedback does not disappear.</p>
-      <div class="metric-grid">
-        <div class="metric">
-          <div class="metric-label">Open issues</div>
-          <div class="metric-value">12</div>
-          <div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div>
+      <h2>Analytics overview</h2>
+      <p class="sub">This is where leadership sees how well feedback is being closed, where risk is increasing, and how sentiment is trending.</p>
+      <div class="analytics-grid">
+        <div class="graph">
+          <div class="metric-label">Closure rate by month</div>
+          <div class="graph-bars">
+            <div class="graph-bar-row">
+              <span>Jan</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:45%;"></div></div>
+              <span>45%</span>
+            </div>
+            <div class="graph-bar-row">
+              <span>Feb</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:62%;"></div></div>
+              <span>62%</span>
+            </div>
+            <div class="graph-bar-row">
+              <span>Mar</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:78%;"></div></div>
+              <span>78%</span>
+            </div>
+          </div>
         </div>
-        <div class="metric">
-          <div class="metric-label">Resolved this week</div>
-          <div class="metric-value">8</div>
-          <div class="bar-track"><div class="bar-fill" style="width:55%;"></div></div>
+        <div class="graph">
+          <div class="metric-label">Top themes this quarter</div>
+          <div class="graph-bars">
+            <div class="graph-bar-row">
+              <span>Workload</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:68%;"></div></div>
+              <span>68%</span>
+            </div>
+            <div class="graph-bar-row">
+              <span>Communication</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:54%;"></div></div>
+              <span>54%</span>
+            </div>
+            <div class="graph-bar-row">
+              <span>Career growth</span>
+              <div class="graph-bar-track"><div class="graph-bar-fill" style="width:39%;"></div></div>
+              <span>39%</span>
+            </div>
+          </div>
         </div>
-        <div class="metric">
-          <div class="metric-label">Average response time</div>
-          <div class="metric-value">1.4d</div>
-          <div class="bar-track"><div class="bar-fill" style="width:60%;"></div></div>
+        <div class="graph">
+          <div class="metric-label">Sentiment trend</div>
+          <p class="sub">Overall sentiment has moved from “stressed” toward “stable and improving” over the last three months.</p>
         </div>
-      </div>
-      <div style="margin-top:16px; display:grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap:14px;">
-        <div style="background:var(--card-alt); border-radius:14px; padding:12px 12px 10px;">
-          <div class="metric-label">Recently raised</div>
+        <div class="graph">
+          <div class="metric-label">At risk teams</div>
           <ul style="font-size:13px; color:var(--muted); padding-left:18px; margin-top:6px;">
-            <li>Unclear sprint priorities for next quarter.</li>
-            <li>Overlapping meetings on Monday mornings.</li>
-            <li>Delayed performance review feedback.</li>
-          </ul>
-        </div>
-        <div style="background:var(--card-alt); border-radius:14px; padding:12px 12px 10px;">
-          <div class="metric-label">Recently resolved</div>
-          <ul style="font-size:13px; color:var(--muted); padding-left:18px; margin-top:6px;">
-            <li>New asynchronous standup channel created.</li>
-            <li>One stop page for deadlines launched.</li>
-            <li>Quarterly listening session with leadership.</li>
+            <li>Customer support • High workload mentions</li>
+            <li>Backend engineering • Response time concerns</li>
+            <li>Sales • Confusion on targets</li>
           </ul>
         </div>
       </div>
