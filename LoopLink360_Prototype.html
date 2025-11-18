@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>LoopLink 360 Prototype</title>
+<style>
+body { font-family: Arial; margin: 40px; background:#f5f7fb; }
+.container { max-width: 800px; margin:auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+h1 { text-align:center; color:#333; }
+textarea { width:100%; height:120px; padding:10px; font-size:16px; border-radius:8px; border:1px solid #ccc; }
+button { padding:10px 20px; margin-top:10px; font-size:16px; border:none; border-radius:8px; background:#4b7bec; color:white; cursor:pointer; }
+button:hover { background:#3867d6; }
+.output { margin-top:20px; padding:15px; background:#eef3ff; border-radius:8px; }
+</style>
+<script>
+function generateWorkflow(){
+    var feedback = document.getElementById("fb").value;
+    if(feedback.trim()===""){
+        alert("Please enter feedback");
+        return;
+    }
+    document.getElementById("result").innerHTML = `
+        <h3>AI Generated Workflow</h3>
+        <ul>
+            <li>Create weekly summary related to: <b>`+feedback+`</b></li>
+            <li>Schedule follow up meeting</li>
+            <li>Assign action items to manager and employee</li>
+            <li>Set automated reminders through Slack or Email</li>
+        </ul>
+    `;
+}
+</script>
+</head>
+<body>
+<div class="container">
+<h1>LoopLink 360 Prototype Demo</h1>
+<p><b>Step 1:</b> Enter feedback below</p>
+<textarea id="fb" placeholder="Example: Deadlines are unclear and meetings happen last minute"></textarea>
+<button onclick="generateWorkflow()">Generate Workflow</button>
+<div class="output" id="result"></div>
+</div>
+</body>
+</html>
