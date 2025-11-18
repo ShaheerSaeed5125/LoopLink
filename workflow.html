@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Workflow</title>
+<style>
+body { font-family: Arial; margin:40px; background:#f5f7fb; }
+.container { max-width:800px; margin:auto; background:white; padding:25px; border-radius:12px;
+            box-shadow:0 0 12px rgba(0,0,0,0.12); }
+li { margin:10px 0; }
+</style>
+<script>
+window.onload = function(){
+    var fb = localStorage.getItem("lastFeedback") || "No feedback found";
+    document.getElementById("fbtext").innerText = fb;
+}
+</script>
+</head>
+<body>
+<div class="container">
+<h1>AI Generated Workflow</h1>
+<p><b>Feedback:</b> <span id="fbtext"></span></p>
+<ul>
+<li>Create weekly summary addressing this issue</li>
+<li>Schedule follow up meeting with team</li>
+<li>Assign action items to responsible roles</li>
+<li>Set automated Slack or email reminders</li>
+</ul>
+</div>
+</body>
+</html>
